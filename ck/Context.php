@@ -54,7 +54,11 @@ abstract class Context extends CKObject {
 	 * @return mixed
 	 */
 	static public function cookie($key, $value = '',$expire = '', $path = '', $domain = ''){
-		static $prefix = Cike::configure()->get('cookie.prefix');
+		static $prefix = null;
+		if ($prefix==null) {
+			Cike::configure()->get('cookie.prefix');
+		}
+		
 		$keyName = $prefix . $keyName;
 		
 		if ($value == '') {

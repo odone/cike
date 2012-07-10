@@ -1,5 +1,8 @@
 <?php
 	
+	// 定义APP_DIR目录名称
+	define('APP_DIR', 'app');
+	
 	// 包含框架文件
 	require_once '../../Cike.php';
 	
@@ -8,5 +11,5 @@
 		Cike::application()->run();
 	}
 	catch(CKException $ex){
-		var_dump($ex);
+		print_r($ex);
 	}
