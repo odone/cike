@@ -99,7 +99,7 @@ abstract class Util extends CKObject {
 	 * @param $client boolean 是否为客户端跳转
 	 */
 	static public function redirect($url, $delay = -1) {
-		$referer = self::getAppHostname () . $_SERVER ['REQUEST_URI'];
+		$referer = self::getAppHostname () . URL;
 		header ( "Referer: $referer\n\n" );
 		
 		if ($delay == - 1) {
@@ -237,7 +237,7 @@ DOCHERE;
 	 * @return 
 	 */
 	static public function getIp() {
-		return $_SERVER ['REMOTE_ADDR'];
+		return isset($_SERVER ['REMOTE_ADDR']) ? $_SERVER ['REMOTE_ADDR'] : '127.0.0.1';
 	}
 	
 	/**
@@ -755,7 +755,7 @@ DOCHERE;
 	
 	static public function isXSS() {
   		//urldecode解码已编码的URL 字符串
-  		$temp = strtoupper(urldecode(urldecode($_SERVER['REQUEST_URI'])));
+  		$temp = strtoupper(urldecode(urldecode(URL)));
  		
   		if(strpos($temp, '<') !== false || strpos($temp, '"') !== false || strpos($temp, 'CONTENT-TRANSFER-ENCODING') !== false) {
     		die('XSS攻击');

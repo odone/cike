@@ -59,7 +59,8 @@ class CKDispatcher extends CKObject {
 				
 				$result = $controller->$methodName ();
 				if ($result != null) {
-					$result->viewdata['_TOKEN'] = md5( APP_ID.URL.Util::getIP().$_SERVER['HTTP_USER_AGENT']);
+					$userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'cli';
+					$result->viewdata['_TOKEN'] = md5( APP_ID.URL.Util::getIP(). $userAgent);
 					$token = Context::post('_TOKEN','s',null);
 					if ($token && $result->viewdata['_TOKEN'] != $token){
 						die('XSS攻击@');

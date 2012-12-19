@@ -5,7 +5,7 @@ define ( 'DS', DIRECTORY_SEPARATOR );
 define ( 'PS', PATH_SEPARATOR );
 define ( 'CIKE_VER', '1.0' );
 define ( 'CIKE_DIR', dirname ( __FILE__ ) );
-define ( 'URL', $_SERVER ['REQUEST_URI'] );
+define ( 'URL', isset($_SERVER ['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_FILENAME'] );
 ! defined ( 'ISPOST' ) ? define ( 'ISPOST', isset ( $_SERVER ['REQUEST_METHOD'] ) && $_SERVER ['REQUEST_METHOD'] == 'POST' ? true : false ) : null;
 ! defined ( 'ISAJAX' ) ? define ( 'ISAJAX', isset ( $_SERVER ['HTTP_X_REQUESTED_WITH'] ) && $_SERVER ['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ? true : false ) : null;
 /*
